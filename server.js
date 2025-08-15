@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.send('API de Pruebas de Usabilidad en Línea');
 });
 
-// Middleware para manejar errores
+// Middleware para manejar errores - captura de errores y lógica de respuesta
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Algo salió mal!');
