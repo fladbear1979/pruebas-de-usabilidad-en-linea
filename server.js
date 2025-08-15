@@ -18,6 +18,12 @@ app.get('/', (req, res) => {
     res.send('API de Pruebas de Usabilidad en Línea');
 });
 
+// Middleware para manejar errores
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Algo salió mal!');
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
