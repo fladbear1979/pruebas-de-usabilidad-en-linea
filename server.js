@@ -4,8 +4,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors()); // Permitir solicitudes CORS
+app.use(bodyParser.json()); // Habilitar el análisis de JSON en las solicitudes
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost:27017/pruebasUsabilidad', { useNewUrlParse
     .then(() => console.log('Conectado a MongoDB...'))
     .catch(err => console.error('No se pudo conectar a MongoDB...', err));
 
+// Ruta principal
 app.get('/', (req, res) => {
     res.send('API de Pruebas de Usabilidad en Línea');
 });
@@ -24,6 +25,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Algo salió mal!');
 });
 
+// Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
